@@ -24,6 +24,9 @@ def main():
     e = pd.read_csv(ROOT / "results/episodes.csv")
     r = pd.read_csv(ROOT / "results/riskset.csv")
     p = pd.read_parquet(ROOT / "data/processed/panel.parquet")
+    # pre-specified sample (DESIGN.md): episodes ending 1950-2022
+    e = e[e.censored | (e.end >= 1950)]
+    r = r[(r.end_year >= 1950) & (r.end_year <= 2022)]
     ended = e[~e.censored].copy()
     ended["ttr"] = np.where(ended.restoration.notna(), ended.restoration - ended.end, ended.stop - ended.end)
     ended["ev"] = ended.restoration.notna().astype(int)
@@ -35,7 +38,7 @@ def main():
                        ("No breakdown (n = %d)" % (~ended.breakdown).sum(), ended[~ended.breakdown], ":")]:
         c = km_curve(g.ttr, g.ev)
         ax.step([x for x, _ in c], [y for _, y in c], where="post", color="black", ls=ls, label=lab)
-    ax.set_xlim(0, 30); ax.set_ylim(0, 1)
+    ax.set_xlim(0, 25); ax.set_ylim(0, 1)
     ax.set_xlabel("Years since end of autocratization episode"); ax.set_ylabel("Cumulative share restored")
     ax.legend(frameon=False, loc="lower right")
     fig.savefig(FIG / "fig5_1_km_restoration.png"); plt.close(fig)
@@ -95,7 +98,8 @@ def main():
 
     # 12.1 coefficient plot across specifications
     rob = (ROOT / "results/robustness.md").read_text(encoding="utf8").splitlines()
-    tab = [l for l in rob if l.startswith("| ") and not l.startswith("| Specification") and "Non-breakdown" not in l]
+    tab = [l for l in rob if l.startswith("| ") and not l.startswith("| Specification") and "Non-breakdown" not in l
+           and "no decade control" not in l]
     import re
     specs, est = [], {k: [] for k in ("RB3 turnover", "RB5a jucon", "RB6 demmob")}
     for l in tab:
