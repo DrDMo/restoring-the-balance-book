@@ -51,7 +51,7 @@ def build(risk_on="restoration", suffix=""):
             ty = seg.edi.idxmin()
             trough, trough_hi = seg.edi.min(), g.loc[ty, "edi_hi"]
             outcome = rows.aut_ep_outcome.dropna().max()
-            cens = bool(rows.aut_ep_censored.max() == 1) or outcome == 6 or E >= LAST - 1
+            cens = bool(rows.aut_ep_censored.max() == 1) or outcome == 6 or E >= LAST  # design: censored only if ERT censors it or no follow-up year exists
             # next autocratization episode after E (ends the risk period)
             nxt = g[(g.index > E) & (g.aut_ep == 1) & (g.aut_ep_id != eid)]
             stop = int(nxt.index.min()) - 1 if len(nxt) else LAST
