@@ -19,7 +19,10 @@ def panel():
     e = pd.read_csv(DATA / "raw/vdem_ert/ert.csv", usecols=lambda c: c != "Unnamed: 0", low_memory=False)
     e = e[["country_text_id", "year", "aut_ep", "aut_ep_id", "dem_ep", "dem_ep_id", "reg_type",
            "aut_ep_start_year", "aut_ep_end_year", "aut_pre_ep_year", "aut_ep_outcome", "aut_ep_censored",
-           "aut_ep_subreg", "aut_ep_termination", "dem_ep_start_year", "dem_ep_end_year", "dem_ep_outcome"]]
+           "aut_ep_subreg", "aut_ep_termination", "aut_ep_prch", "v2x_polyarchy", "v2x_polyarchy_codelow", "v2x_polyarchy_codehigh", "v2x_regime", "dem_ep_start_year", "dem_ep_end_year", "dem_ep_outcome"]]
+    # ERT v16 carries its own EDI/RoW (V-Dem v16); kept as edi/edi_lo/edi_hi/row_ert for episode work
+    e = e.rename(columns={"v2x_polyarchy": "edi", "v2x_polyarchy_codelow": "edi_lo",
+                          "v2x_polyarchy_codehigh": "edi_hi", "v2x_regime": "row_ert"})
     return v.merge(e, on=["country_text_id", "year"], how="left").sort_values(["country_text_id", "year"])
 
 
