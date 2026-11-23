@@ -1,0 +1,83 @@
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.Python
+build/
+dist/
+.eggs/
+.venv/
+venv/
+env/
+.env
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# --- R ---
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rcheck/
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+renv/python/
+renv/staging/
+
+# --- Quarto / Jupyter rendered outputs ---
+/_site/
+/_book/
+/_freeze/
+*.quarto_ipynb
+.quarto/
+
+# --- Data files (large / third-party / sensitive) ---
+# Track folder structure but ignore raw data dumps by default.
+# To commit a specific file, use: git add -f Data/path/to/file
+Data/**/*.csv
+Data/**/*.tsv
+Data/**/*.parquet
+Data/**/*.feather
+Data/**/*.dta
+Data/**/*.sav
+Data/**/*.sas7bdat
+Data/**/*.xlsx
+Data/**/*.xls
+Data/**/*.zip
+Data/**/*.gz
+Data/**/*.7z
+Data/**/*.rds
+Data/**/*.RData
+
+# Keep folder structure markers
+!**/.gitkeep
+
+# --- Logs / temp ---
+*.log
+*.tmp
+tmp/
+logs/
+
+# --- Secrets ---
+*.pem
+*.key
+secrets.*
+.envrc

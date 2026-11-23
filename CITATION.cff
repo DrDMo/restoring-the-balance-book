@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use the code in this repository, please cite the book."
+title: "Restoring the Balance: Authoritarian Demand and the Institutional Recovery of Democracy — Code Archive"
+authors:
+  - family-names: Molnar
+    given-names: Darin
+type: software
+repository-code: "https://github.com/DrDMo/restoring-the-balance-book"
+license: MIT
+references:
+  - type: book
+    title: "Restoring the Balance: Authoritarian Demand and the Institutional Recovery of Democracy"
+    authors:
+      - family-names: Molnar
+        given-names: Darin
+    notes: "Forthcoming. Update with publisher, year, and ISBN on publication."
