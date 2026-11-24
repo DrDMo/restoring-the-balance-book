@@ -1,9 +1,10 @@
 """Build backsliding episodes, restoration outcomes, and the at-risk country-year panel (DESIGN.md)."""
+import os
 import numpy as np, pandas as pd
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = Path("C:/Users/darin/Documents/Claude/Projects/Strongmen Book/Data")
+DATA = Path(os.environ.get("RTB_DATA", ROOT / "data"))  # raw V-Dem/ERT and Volume 1 outputs; see README
 LAST = 2023
 PATHS = {"vertical": "v2x_veracc", "horizontal": "v2x_horacc", "diagonal": "v2x_diagacc"}
 

@@ -5,11 +5,12 @@ A(s) <= A(t)-delta/2 for s in t+k+1..t+k+m; no aut_ep in t..t+k and EDI drop ove
 delta=0.15, k=4, m=2, onset >= 1995. Consecutive onset years on one index merge into one spell.
 Recovery: index returns above A(t)-delta/2 after the persistence period.
 """
+import os
 import pandas as pd, numpy as np
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = Path("C:/Users/darin/Documents/Claude/Projects/Strongmen Book/Data")
+DATA = Path(os.environ.get("RTB_DATA", ROOT / "data"))  # raw V-Dem/ERT and Volume 1 outputs; see README
 INDICES = {"vertical": "v2x_veracc", "horizontal": "v2x_horacc", "diagonal": "v2x_diagacc"}
 LAST = 2023
 
